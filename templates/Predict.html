@@ -1196,6 +1196,25 @@ li[data-type="control_image"] img {
       width: 100%;
     
       }
+      
+      /* Colour picker css only */
+
+.colors {
+  display: flex;
+  position: fixed;
+  bottom: 2em;
+  right: 2em;
+}
+
+.color {
+  height: 36px;
+  width: 36px;
+  margin-left: 0.5em;
+  border-radius: 18px;
+  box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
+  border: 2px solid #aaa;
+  cursor: pointer;
+}
     /* Injected CSS Code */
 </style>
 
@@ -1219,6 +1238,36 @@ if (window.JotForm && JotForm.accessible) $('input_35').setAttribute('tabindex',
    JotForm.prepareCalculationsOnTheFly([null,{"name":"heading","qid":"1","text":"Car Valuation Predictive analysis","type":"control_head"},null,null,null,{"name":"year","qid":"5","text":"Year","type":"control_textbox"},{"name":"showroomPrice","qid":"6","text":"Showroom Price? (In Lakhs)","type":"control_textbox"},{"name":"gender","qid":"7","text":"Gender","type":"control_dropdown"},null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,{"name":"submit","qid":"33","text":"Submit","type":"control_button"},{"description":"","name":"schoolLast35","qid":"34","subLabel":"","text":"School Last Attended","type":"control_textbox"},{"description":"","name":"schoolLast35","qid":"35","subLabel":"","text":"School Last Attended","type":"control_textbox"},{"description":"","name":"gender36","qid":"36","subLabel":"","text":"Gender","type":"control_dropdown"},{"description":"","name":"gender37","qid":"37","subLabel":"","text":"Gender","type":"control_dropdown"}]);
    setTimeout(function() {
 JotForm.paymentExtrasOnTheFly([null,{"name":"heading","qid":"1","text":"Car Valuation Predictive analysis","type":"control_head"},null,null,null,{"name":"year","qid":"5","text":"Year","type":"control_textbox"},{"name":"showroomPrice","qid":"6","text":"Showroom Price? (In Lakhs)","type":"control_textbox"},{"name":"gender","qid":"7","text":"Gender","type":"control_dropdown"},null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,{"name":"submit","qid":"33","text":"Submit","type":"control_button"},{"description":"","name":"schoolLast35","qid":"34","subLabel":"","text":"School Last Attended","type":"control_textbox"},{"description":"","name":"schoolLast35","qid":"35","subLabel":"","text":"School Last Attended","type":"control_textbox"},{"description":"","name":"gender36","qid":"36","subLabel":"","text":"Gender","type":"control_dropdown"},{"description":"","name":"gender37","qid":"37","subLabel":"","text":"Gender","type":"control_dropdown"}]);}, 20); 
+
+// Colour picker JS only
+
+// Reference of base image with paint watermark
+const base = "https://ddools.imgix.net/cars/base.png?w=600&mark-align=center,middle&mark=https%3A%2F%2Fddools.imgix.net%2Fcars%2Fpaint.png%3Fw%3D600%26bri%3D-18%26con%3D26%26monochrome%3D"
+
+// Click on a color
+var el = document.getElementsByClassName("color");
+for (var i = 0; i < el.length; i++) {
+  el[i].onclick = changeColor;
+}
+
+function changeColor(e) {
+  // get the hex color
+  let hex = e.target.getAttribute("data-hex");
+  // updated url
+  let updateColor = base + hex;
+  // update src of image
+  document.getElementById("productImage").src = updateColor;
+
+  
+}
+
+//http://jscolor.com
+//Custom colourpicker
+function update(jscolor) {
+  let updateColor = base + jscolor;
+    // Use 'jscolor' instance for car color
+     document.getElementById("productImage").src = updateColor;
+}
 </script>
 </head>
 <body>
@@ -1231,53 +1280,22 @@ JotForm.paymentExtrasOnTheFly([null,{"name":"heading","qid":"1","text":"Car Valu
 <li id="cid_1" class="form-input-wide" data-type="control_head">
 <div class="form-header-group  header-large">
 <div class="header-text httal htvam">
-<h1 id="header_1" class="form-header" data-component="header">Car Valuation Analysis</h1>
+<h1 id="header_1" class="form-header" data-component="header">Predicted Car Valuation</h1><br>
+<h3 id="header_1" class="form-header" data-component="header">{{ prediction_text }} Lakhs</h3>
 
 </div>
 
 </div>
 </li>
-<li id="id_5" class="form-line" data-type="control_textbox"><label id="label_5" class="form-label form-label-top form-label-auto" for="input_5">Year of Model:</label>
-<div id="cid_5" class="form-input-wide"><input id="first" name="Year" required="required" type="number" class="form-textbox" size="20" value="" data-type="input-textbox" data-component="textbox" aria-labelledby="label_5" /></div>
-</li>
-<li id="id_6" class="form-line" data-type="control_textbox"><label id="label_6" class="form-label form-label-top form-label-auto" for="input_6"> Showroom Price now? (In Lakhs ex:- 3,5,8) </label>
-<div id="cid_6" class="form-input-wide"><input id="second" name="Present_Price" required="required" class="form-textbox"  size="20" value="" data-type="input-textbox" data-component="textbox" aria-labelledby="label_6" /></div>
-</li>
-<li id="id_34" class="form-line" data-type="control_textbox"><label id="label_34" class="form-label form-label-top form-label-auto" for="input_34">KM Drived? (Ex:- 10000,20000)</label>
-<div id="cid_34" class="form-input-wide"><input id="third" name="Kms_Driven" required="required" class="form-textbox" size="20" type="number" data-type="input-textbox" data-component="textbox" aria-labelledby="label_34" /></div>
-</li>
-<li id="id_35" class="form-line" data-type="control_textbox"><label id="label_35" class="form-label form-label-top form-label-auto" for="input_35">Previous Owners? (Ex:- 1 0r 4)</label>
-<div id="cid_35" class="form-input-wide"><input id="fourth" name="Owner" required="required" class="form-textbox" size="20" type="number" value="" data-type="input-textbox" data-component="textbox" aria-labelledby="label_35" /></div>
-</li>
-<li id="id_7" class="form-line" data-type="control_dropdown"><label id="label_7" class="form-label form-label-top form-label-auto" for="input_7"> Fuel Type:</label>
-<div id="cid_7" class="form-input-wide"><select name="Fuel_Type_Petrol" id="fuel" required="required" class="form-dropdown" style="width: 150px;" data-component="dropdown" aria-labelledby="label_7">
+<!-- product image -->
+<!-- Use the color picker or change the final 000000 value to any hex value to dynamically update the car color.-->
 
-<option value="Petrol">Petrol</option>
-<option value="Diesel">Diesel</option>
-<option value="CNG">CNG</option>
-</select></div>
-</li>
-<li id="id_36" class="form-line" data-type="control_dropdown"><label id="label_36" class="form-label form-label-top form-label-auto" for="input_36"> Dealer or Individual ?</label>
-<div id="cid_36" class="form-input-wide"><select name="Seller_Type_Individual" id="resea" required="required" class="form-dropdown" style="width: 150px;" data-component="dropdown" aria-labelledby="label_36">
+<img id="productImage" src="https://ddools.imgix.net/cars/base.png?w=600&mark-align=center,middle&mark=https%3A%2F%2Fddools.imgix.net%2Fcars%2Fpaint.png%3Fw%3D600%26bri%3D-18%26con%3D26%26monochrome%3D000000" alt="my base image" />
 
-<option value="Dealer">Dealer</option>
-<option value="Individual">Individual</option>
-</select></div>
-</li>
-<li id="id_37" class="form-line" data-type="control_dropdown"><label id="label_37" class="form-label form-label-top form-label-auto" for="input_37"> Driving Type:</label>
-<div id="cid_37" class="form-input-wide"><select name="Transmission_Mannual" id="research" required="required" class="form-dropdown" style="width: 150px;"  data-component="dropdown" aria-labelledby="label_37">
 
-<option value="Manual">Manual</option>
-<option value="Automatic">Automatic</option>
-</select></div>
-</li>
-<li id="id_33" class="form-line" data-type="control_button">
-<div id="cid_33" class="form-input-wide">
-<div class="form-buttons-wrapper form-buttons-auto   jsTest-button-wrapperField" style="margin-left: 156px;" data-align="auto"><button id="sub" type="submit " class="form-submit-button submit-button jf-form-buttons jsTest-submitField" data-component="button" data-content=""> Predict </button>
 
-</div>
-</div>
-</li>
+
+
 
 </form>
 </body>
